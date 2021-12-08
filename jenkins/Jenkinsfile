@@ -8,8 +8,8 @@ pipeline {
             steps {
                 script{ 
                     sh """
-                        update & sudo apt upgrade
-                        install curl
+                       apt update & apt upgrade
+                       apt install curl
                     """
                     echo 'Success'
                     // sh """
