@@ -27,8 +27,12 @@ module "jenkins" {
       value = "internal"
     },
     {
-      name  = "agent.enabled"
-      value = "true"
+      name  = "agent.tag"
+      value = "latest"
+    },
+    {
+      name  = "agent.iamge"
+      value = "ubuntu"
     }
   ]
 
