@@ -1,6 +1,6 @@
 pipeline {
 
-    agent node
+    agent any
 
     stages {
 
@@ -11,6 +11,7 @@ pipeline {
                         sudo apt update & sudo apt upgrade
                         sudo apt install curl
                     """
+                    echo 'Success'
                     // sh """
                     //      if [ ! -f helm ]; then
                     //         /usr/bin/curl -fsSL -o helm.tar.gz  https://get.helm.sh/helm-v3.7.1-linux-amd64.tar.gz
