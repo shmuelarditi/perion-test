@@ -1,1 +1,24 @@
-.
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('Preparations') {
+            steps {
+                script{
+                    sh """
+                        if [ ! -f helm ]; then
+                            echo helm isnt installed... installing helm
+                            curl -fsSL -o helm.tar.gz  https://get.helm.sh/helm-v3.7.1-linux-amd64.tar.gz
+                            tar -xzf helm.tar.gz linux-amd64/helm
+                            mv linux-amd64/helm helm
+                        fi
+                    """
+                }
+            }
+        }
+
+        stage()
+    }       
+}
