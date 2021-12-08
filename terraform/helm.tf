@@ -25,6 +25,10 @@ module "jenkins" {
     {
       name  = "controller.serviceAnnotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-scheme"
       value = "internal"
+    },
+    {
+      name  = "agent.enabled"
+      value = "true"
     }
   ]
 

@@ -6,15 +6,18 @@ pipeline {
 
         stage('Preparations') {
             steps {
-                script{
+                script{ 
                     sh """
-                        if [ ! -f helm ]; then
-                            echo helm isnt installed... installing helm
-                            /usr/bin/curl -fsSL -o helm.tar.gz  https://get.helm.sh/helm-v3.7.1-linux-amd64.tar.gz
-                            tar -xzf helm.tar.gz linux-amd64/helm
-                            mv linux-amd64/helm helm
-                        fi
+                        apt update & apt upgrade
+                        apt install curl
                     """
+                    // sh """
+                    //      if [ ! -f helm ]; then
+                    //         /usr/bin/curl -fsSL -o helm.tar.gz  https://get.helm.sh/helm-v3.7.1-linux-amd64.tar.gz
+                    //         tar -xzf helm.tar.gz linux-amd64/helm
+                    //         mv linux-amd64/helm helm
+                    //     fi
+                    // """
                 }
             }
         }
