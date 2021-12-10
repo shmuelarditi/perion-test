@@ -17,6 +17,9 @@ pipeline {
                             mv linux-amd64/helm helm
                         fi
                     """
+
+                    sh "helm repo add azure-samples https://azure-samples.github.io/helm-charts/"
+                    sh "helm install azure-samples/aks-helloworld" 
                 }
             }
         }
