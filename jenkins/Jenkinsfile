@@ -7,15 +7,18 @@ pipeline {
         stage('Preparations') {
             steps {
                 script{ 
-                    sh "echo 'pipeline has started'"
-                    sh "curl google.com"
-                    
+                    echo 'STAGE: Preparations has started'
                     sh """
                          if [ ! -f helm ]; then
                             /usr/bin/curl -fsSL -o helm.tar.gz  https://get.helm.sh/helm-v3.7.1-linux-amd64.tar.gz
                             tar -xzf helm.tar.gz linux-amd64/helm
                             mv linux-amd64/helm helm
                             chmod +x helm
+                        fi
+
+                        if [ ! -f kubectl ]; then
+                            /usr/bin/curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+                            chmod +x kubectl
                         fi
                     """
 
