@@ -8,10 +8,7 @@ pipeline {
             steps {
                 script{ 
                     sh "echo 'pipeline has started'"
-                    // sh """
-                    //    apt update & apt upgrade
-                    //    apt install curl
-                    // """
+                    sh "curl google.com"
                     
                     // sh """
                     //      if [ ! -f helm ]; then
