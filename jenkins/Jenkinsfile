@@ -7,11 +7,12 @@ pipeline {
         stage('Preparations') {
             steps {
                 script{ 
-                    sh """
-                       apt update & apt upgrade
-                       apt install curl
-                    """
-                    echo 'Success'
+                    echo 'pipeline has started'
+                    // sh """
+                    //    apt update & apt upgrade
+                    //    apt install curl
+                    // """
+                    
                     // sh """
                     //      if [ ! -f helm ]; then
                     //         /usr/bin/curl -fsSL -o helm.tar.gz  https://get.helm.sh/helm-v3.7.1-linux-amd64.tar.gz
