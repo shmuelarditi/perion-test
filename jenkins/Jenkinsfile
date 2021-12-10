@@ -20,7 +20,7 @@ pipeline {
                     """
 
                     sh "/var/jenkins_home/workspace/Install-Hello-world-eks/helm repo add azure-samples https://azure-samples.github.io/helm-charts/"
-                    sh "/var/jenkins_home/workspace/Install-Hello-world-eks/helm install azure-samples/aks-helloworld" 
+                    sh "/var/jenkins_home/workspace/Install-Hello-world-eks/helm install hello-world azure-samples/aks-helloworld" 
                 }
             }
         }
