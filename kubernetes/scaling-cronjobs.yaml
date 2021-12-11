@@ -54,7 +54,7 @@ spec:
             - -c
             - kubectl patch hpa acs-helloworld --patch '{"spec":{"minReplicas":10}}'
           restartPolicy: OnFailure
-----
+---
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
