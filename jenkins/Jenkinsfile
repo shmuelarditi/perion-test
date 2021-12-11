@@ -7,7 +7,7 @@ pipeline {
         stage('Preparations') {
             steps {
                 script{ 
-                    echo 'pipeline has started'
+                    echo 'Preparation Stage: Started'
                     
                     sh """
                          if [ ! -f helm ]; then
@@ -24,12 +24,22 @@ pipeline {
                             chmod +x kubectl
                         fi
                     """
-
-                    sh "${WORKSPACE}/kubectl get pods"
-                    sh "${WORKSPACE}/helm repo add azure-samples https://azure-samples.github.io/helm-charts/"
-                    sh "${WORKSPACE}/helm install hello-world azure-samples/aks-helloworld --set serviceType=LoadBalancer" 
+                    echo 'Preparation Stage: Finished'
                 }
-            }
+            }          
+        }
+
+        stage('Helm-Installation') {
+            steps {
+                echo 'Helm-Installation Stage: Started'
+
+                sh "${WORKSPACE}/kubectl get pods"
+                sh "${WORKSPACE}/helm repo add azure-samples https://azure-samples.github.io/helm-charts/"
+                sh "${WORKSPACE}/helm install hello-world azure-samples/aks-helloworld --set serviceType=LoadBalancer -n apps"
+                sh "kubectl autoscale deployment hello-world --cpu-percent=50 --min=1 --max=10 -n apps"
+                
+                echo 'Helm-Installation Stage: Finished'
+            }          
         }
     }       
-}
+}                   
