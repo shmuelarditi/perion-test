@@ -35,7 +35,7 @@ pipeline {
 
                 sh "${WORKSPACE}/kubectl get pods"
                 sh "${WORKSPACE}/kubectl apply -f ${WORKSPACE}/kubernetes/hello-world.yaml"
-                sh "${WORKSPACE}/kubectl autoscale deployment acs-helloworld-hello-world --cpu-percent=50 --min=1 --max=10"
+                sh "${WORKSPACE}/kubectl autoscale deployment acs-helloworld --cpu-percent=50 --min=1 --max=10"
                 
                 echo 'Installation Stage: Finished'
             }          
