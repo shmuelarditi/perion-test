@@ -1,4 +1,4 @@
-Terraform\
+Terraform:\
 	- 3 providers (aws , kubernetes, helm)\
 	- VPC with 2 private subnets and 1 public subnet.\
 	- eks cluster & managed node group\
@@ -10,8 +10,7 @@ Jenkins:\
 	- installing the hello-world deployment with helm chart\
 	- creates autoscaling with hpa inside the same pipeline\
 	- creates time-based scaling with cronjob that override the hpa minimum replicas.\
-	
-	NOTE: jenkins checking out this git repo that contains the Jenkinsfile itself, and all the required files.\
+	- jenkins checking out this git repo that contains the Jenkinsfile itself, and all the required files.\
 	
 Manual installations:\
 	- EFK was mannualy installed on the cluster.
