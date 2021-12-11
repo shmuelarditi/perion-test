@@ -33,6 +33,17 @@ module "eks" {
   map_users = var.map_users
 }
 
+# resource "null_resource" "cluster_metrics" {
+#   depends_on = [
+#     module.eks
+#   ]
+
+#   provisioner "local-exec" {
+#     command = "kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml"
+#   }
+# }
+
 output "cluster_access" {
   value = module.eks.config_map_aws_auth
 }
+
