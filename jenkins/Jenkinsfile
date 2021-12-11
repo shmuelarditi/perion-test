@@ -36,7 +36,7 @@ pipeline {
                 sh "${WORKSPACE}/kubectl get pods"
                 sh "${WORKSPACE}/helm repo add azure-samples https://azure-samples.github.io/helm-charts/"
                 sh "${WORKSPACE}/helm install hello-world azure-samples/aks-helloworld --set serviceType=LoadBalancer -n jenkins"
-                sh "${WORKSPACE}kubectl autoscale deployment hello-world --cpu-percent=50 --min=1 --max=10 -n jenkins"
+                sh "${WORKSPACE}/kubectl autoscale deployment hello-world --cpu-percent=50 --min=1 --max=10 -n jenkins"
                 
                 echo 'Helm-Installation Stage: Finished'
             }          
