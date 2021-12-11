@@ -52,7 +52,7 @@ spec:
             command:
             - /bin/sh
             - -c
-            - kubectl patch hpa acs-helloworld --patch '{"spec":{"minReplicas":8}}'
+            - kubectl patch hpa acs-helloworld --patch '{"spec":{"minReplicas":10}}'
           restartPolicy: OnFailure
 ----
 apiVersion: batch/v1beta1
@@ -61,7 +61,7 @@ metadata:
   name: django-scale-down-job
   namespace: default
 spec:
-  schedule: "30 20 * * 1-6"
+  schedule: "0 12 * * *"
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 0 # Remove after successful completion
   failedJobsHistoryLimit: 1 # Retain failed so that we see it
@@ -76,5 +76,5 @@ spec:
             command:
             - /bin/sh
             - -c
-            - kubectl patch hpa acs-helloworld --patch '{"spec":{"minReplicas":5}}'
+            - kubectl patch hpa acs-helloworld --patch '{"spec":{"minReplicas":1}}'
           restartPolicy: OnFailure
