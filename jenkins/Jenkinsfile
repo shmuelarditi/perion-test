@@ -26,8 +26,8 @@ pipeline {
                     """
 
                     sh "${WORKSPACE}/kubectl get pods"
-                    sh "/var/jenkins_home/workspace/Install-Hello-world-eks/helm repo add azure-samples https://azure-samples.github.io/helm-charts/"
-                    sh "/var/jenkins_home/workspace/Install-Hello-world-eks/helm install hello-world azure-samples/aks-helloworld" 
+                    sh "${WORKSPACE}/helm repo add azure-samples https://azure-samples.github.io/helm-charts/"
+                    sh "${WORKSPACE}/helm install hello-world azure-samples/aks-helloworld --set serviceType=LoadBalancer" 
                 }
             }
         }
