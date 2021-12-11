@@ -138,7 +138,7 @@ resource "kubernetes_role" "jenkins_role" {
   }
 
   rule {
-    api_groups     = ["","apps","autoscaling","rbac.authorization.k8s.io"]
+    api_groups     = ["","apps","autoscaling","rbac.authorization.k8s.io","batch"]
     resources      = ["*"]
     verbs          = ["*"]
   }
