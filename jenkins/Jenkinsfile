@@ -29,16 +29,15 @@ pipeline {
             }          
         }
 
-        stage('Helm-Installation') {
+        stage('Installation') {
             steps {
-                echo 'Helm-Installation Stage: Started'
+                echo 'Installation Stage: Started'
 
                 sh "${WORKSPACE}/kubectl get pods"
-                sh "${WORKSPACE}/helm repo add azure-samples https://azure-samples.github.io/helm-charts/"
-                sh "${WORKSPACE}/helm install hello-world azure-samples/aks-helloworld --set serviceType=LoadBalancer"
+                sh "${WORKSPACE}/kubectl apply -f ${WORKSPACE}/kubernetes/hello-world.yaml"
                 sh "${WORKSPACE}/kubectl autoscale deployment acs-helloworld-hello-world --cpu-percent=50 --min=1 --max=10"
                 
-                echo 'Helm-Installation Stage: Finished'
+                echo 'Installation Stage: Finished'
             }          
         }
     }       

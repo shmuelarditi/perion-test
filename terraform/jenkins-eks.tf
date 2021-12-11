@@ -1,7 +1,7 @@
 resource "kubernetes_namespace" "jenkins_namespace" {
   count = var.create_namespace ? 1 : 0
   depends_on = [
-    module.eks
+    null_resource.update_config
   ]
   metadata {
     annotations = {
@@ -34,13 +34,13 @@ resource "kubernetes_persistent_volume_claim" "claim" {
     storage_class_name = var.storageclass
   }
   depends_on = [
-    kubernetes_namespace.jenkins_namespace
+    null_resource.update_config
   ]
 }
 
 resource "kubernetes_deployment" "jenkins" {
   depends_on = [
-    kubernetes_namespace.jenkins_namespace
+    null_resource.update_config
   ]
 
   metadata {
@@ -97,8 +97,7 @@ resource "kubernetes_deployment" "jenkins" {
 
 resource "kubernetes_service" "jenkins-service" {
   depends_on = [
-    kubernetes_deployment.jenkins,
-    kubernetes_namespace.jenkins_namespace
+    kubernetes_deployment.jenkins
   ]
   metadata {
     name      = var.name

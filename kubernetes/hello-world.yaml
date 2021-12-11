@@ -1,0 +1,42 @@
+
+  
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: acs-helloworld
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: acs-helloworld
+  template:
+    metadata:
+      labels:
+        app: acs-helloworld
+    spec:
+      containers:
+      - name: acs-helloworld
+        image: neilpeterson/aks-helloworld:v1
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        env:
+        - name: TITLE
+          value: "Welcome to Shmuel Hello World Deployment"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aks-helloworld
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: acs-helloworld
